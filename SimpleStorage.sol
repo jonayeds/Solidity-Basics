@@ -1,4 +1,5 @@
-pragma solidity 0.8.19; // ==> Solidity compiler version
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19; // ==> Solidity compiler version
 
 contract SimpleStorage {
     // // Basic types : boolean, uint --> positive integer, int, address, bytes
@@ -11,7 +12,7 @@ contract SimpleStorage {
     //uint256[] listOfNumbers;
     struct Person { // --> custom data type
         uint256 favouriteNumber;
-        string name; 
+        string  name; 
     }
 
     // Person public myFriend = Person(10,"Vishal"); // --> creating a variable of type Person
@@ -22,6 +23,12 @@ contract SimpleStorage {
     Person[] public friendList; // --> Dynamic array : no limitation on storing values
     // Person[10] public friendList; // --> Static array : can store up to 10 values 
     
+
+    // --- String types ---
+    // memory --> only going to exist temporarily ( when the function calls ) 
+    // calldata --> temporary variable, cannot be changed or reassigned
+    // storage --> permanent variables cant be modified
+
     function addPerson(string memory _name, uint256 _favouriteNumber) public{
         friendList.push(Person(_favouriteNumber, _name));
     }
