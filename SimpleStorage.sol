@@ -31,7 +31,12 @@ contract SimpleStorage {
 
     function addPerson(string memory _name, uint256 _favouriteNumber) public{
         friendList.push(Person(_favouriteNumber, _name));
+        nameToFavouriteNumber[_name] = _favouriteNumber;
     }
+
+    // mapping --> associate a value with another, 
+    mapping(string => uint256 ) public nameToFavouriteNumber;
+
 
     
     function store(uint256 _number) public {
