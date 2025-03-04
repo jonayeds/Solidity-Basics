@@ -46,6 +46,10 @@ contract SimpleStorage {
     function retrieve() public view returns(uint256) { // --> view : to read states, cannot modify any variables
          return number;
     }
+
+    function getFavouriteNumber(string memory _name)public view returns(uint256){
+        return nameToFavouriteNumber[_name];
+    }
     // function pureFunction() public pure returns(uint256) { // --> pure : Can only return pure values, cannot return and variables
     //      return 3;
     // }

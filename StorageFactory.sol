@@ -10,15 +10,25 @@ contract StorageFactory {
         listOfSimpleStorage.push(newSimpleStorage);
     }
 
-    function sfStore (uint256 _simpleStorageIndex, uint256 _newSimpleStorageNumber) public {
-        // (Address, ABI: Application Binary Interface ) --> to interact with another contract
-        SimpleStorage mySimpleStorage = listOfSimpleStorage[_simpleStorageIndex];
-        mySimpleStorage.store(_newSimpleStorageNumber);
-    }
+    // function sfStore (uint256 _simpleStorageIndex, uint256 _newSimpleStorageNumber) public {
+    //     // (Address, ABI: Application Binary Interface ) --> to interact with another contract
+    //     SimpleStorage mySimpleStorage = listOfSimpleStorage[_simpleStorageIndex];
+    //     mySimpleStorage.store(_newSimpleStorageNumber);
+    // }
     
-    function sfGet(uint256 _simpleStorageIndex) public view returns (uint256){
+    // function sfGet(uint256 _simpleStorageIndex) public view returns (uint256){
+    //     SimpleStorage mySimpleStorage = listOfSimpleStorage[_simpleStorageIndex];
+    //     return mySimpleStorage.retrieve();
+    // }
+
+    function sfAddPerson(string memory _name, uint256 _number, uint256 _simpleStorageIndex) public {
         SimpleStorage mySimpleStorage = listOfSimpleStorage[_simpleStorageIndex];
-        return mySimpleStorage.retrieve();
+        mySimpleStorage.addPerson(_name, _number);
+    } 
+
+    function sfGetFavouriteNumber(uint _simpleStorageIndex, string memory _name) public view  returns (uint256){
+        SimpleStorage mySimpleStorage = listOfSimpleStorage[_simpleStorageIndex];
+        return mySimpleStorage.getFavouriteNumber(_name);
     }
 
 
