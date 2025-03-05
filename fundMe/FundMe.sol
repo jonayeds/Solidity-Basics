@@ -5,6 +5,8 @@ pragma solidity ^0.8.19;
 // withdraw Funds
 // Set A minimum funding value in USD
 
+import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
+
 interface AggregatorInterface {
     function decimals() external view returns(uint8);
     function description() external view returns(string memory);
@@ -27,8 +29,12 @@ contract FundMe{
         require(msg.value >= minimumUsd, "didn't Sent enough..."); 
     }
 
-    function getPrice()public {
+    function getPrice() public view returns (uint256)  {
         // Address --> 0xB0C712f98daE15264c8E26132BCC91C40aD4d5F9
+        AggregatorV3Interface priceFeed = AggregatorV3Interface(0xB0C712f98daE15264c8E26132BCC91C40aD4d5F9);
+        (, int256 price, , ,) =  priceFeed.latestRoundData(); // --> price of eth in terms of USD
+        return uint256(price * 1e10); // --> price returns int256  
+
 
     }
 
